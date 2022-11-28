@@ -6,7 +6,7 @@ local starttime = socket.gettime()
 local sha = require("sha2")
 local cidlib = require("cid")
 
--- functioins
+-- functions
 function string.starts(String,Start)
   return string.sub(String,1,string.len(Start))==Start
 end
@@ -28,6 +28,14 @@ function string.contains(string, hash)
   else
     return 200
   end
+end
+
+function getHostname()
+    local f = io.popen ("/bin/hostname")
+    local hostname = f:read("*a") or ""
+    f:close()
+    hostname =string.gsub(hostname, "\n$", "")
+    return hostname
 end
 
 -- preparation
@@ -58,6 +66,7 @@ if ngx.var.debug == "true" then
   ngx.header['X-debug-ProcessedCID'] = CID
   ngx.header['X-debug-HashOfCID'] = cidhash
   ngx.header['X-debug-DenyListFile'] = denylistfile
+  ngx.header['X-debug-Hostname'] = getHostname()
 end
 
 -- return 200 if valid file or 403 if blocked

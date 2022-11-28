@@ -1,6 +1,6 @@
 #!/bin/bash
 
-folder="/usr/share/denylist"
+folder="/usr/share/ipfs-denylist/denylist"
 
 rm -rf $folder
 

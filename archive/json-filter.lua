@@ -1,3 +1,7 @@
+-- #if json improves speed install: luarocks
+-- #if json improves speed install: luarocks install lua-cjson
+
+
 measure start
 local socket = require("socket")
 local starttime = socket.gettime()

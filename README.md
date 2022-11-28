@@ -7,23 +7,33 @@
 
 ## Implementation
 
-Follow this information to implement ipfs-denylist: #WIP
+>Follow this information to implement ipfs-denylist. #WIP
+
+1. Clone Repo to /usr/share/ipfs-denylist
 
 ```bash
-#0. Clone Repo to /etc/ipfs-denylist
+cd /usr/share
+git clone https://github.com/chixodo-xyz/ipfs-denylist.git
+cd ipfs-denylist
+```
 
-#1. include ipfs-denylist.conf to nginx virtual host (section server)
+2. include nginx.conf to nginx virtual host (section server)
+
+```bash
 nano /etc/nginx/sites-available/[ipfs-host-config].conf
 #ADD to every server section:>
-#include /etc/ipfs-denylist/nginx.conf;
+  include /usr/share/ipfs-denylist/nginx.conf;
+```
 
-#3. install lua filter and add sha2 library
-apt install libnginx-mod-http-lua jq #if json improves speed install: luarocks
-#if json improves speed install: luarocks install lua-cjson
+3. install lua filter and add sha2 library
+
+```bash
+apt install libnginx-mod-http-lua jq
 mkdir /usr/share/lua/
 mkdir /usr/share/lua/5.1/
 cd /usr/share/lua/5.1/
 wget https://raw.githubusercontent.com/Egor-Skriptunoff/pure_lua_SHA/master/sha2.lua
+```
 
 #4. download denylist by dwebops and add required nginx-config, lua-filter
 mkdir /etc/ipfs-denylist

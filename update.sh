@@ -1,6 +1,6 @@
 #!/bin/bash
 
-folder=denylist
+folder="/usr/share/denylist"
 
 rm -rf denylist
 

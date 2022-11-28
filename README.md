@@ -2,34 +2,32 @@
 
 >This code is not properly working yet! 
 >1. Wrote quite fast and scratch
->2. Only CIDv0 is supportet
 >2. Performance might be bad
 >3. not properly testet
 
 ## Implementation
 
-Trying to implement denylist in IPFS. Information so far:
+Follow this information to implement ipfs-denylist: #WIP
 
 ```bash
-#1. make sure to run nginx with the same user as ipfs
-nano /etc/nginx/nginx.conf
-user ipfs-user;
+#0. Clone Repo to /etc/ipfs-denylist
 
-#2. include ipfs-denylist.conf to nginx virtual host (section server)
-nano /etc/nginx/sites-available/ipfs-host.conf
-#Add 3x:>
-#include /etc/nginx/snippets/ipfs-denylist/ipfs-denylist.conf;
+#1. include ipfs-denylist.conf to nginx virtual host (section server)
+nano /etc/nginx/sites-available/[ipfs-host-config].conf
+#ADD to every server section:>
+#include /etc/ipfs-denylist/nginx.conf;
 
 #3. install lua filter and add sha2 library
-apt install libnginx-mod-http-lua
+apt install libnginx-mod-http-lua jq #if json improves speed install: luarocks
+#if json improves speed install: luarocks install lua-cjson
 mkdir /usr/share/lua/
 mkdir /usr/share/lua/5.1/
 cd /usr/share/lua/5.1/
 wget https://raw.githubusercontent.com/Egor-Skriptunoff/pure_lua_SHA/master/sha2.lua
 
 #4. download denylist by dwebops and add required nginx-config, lua-filter
-mkdir /etc/nginx/snippets/ipfs-denylist
-cd /etc/nginx/snippets/ipfs-denylist
+mkdir /etc/ipfs-denylist
+cd /etc/ipfs-denylist
 wget  https://badbits.dwebops.pub/denylist.json
 
 nano ipfs-denylist.conf
@@ -108,3 +106,18 @@ nano ipfs-denylist-filter.lua
 ## Stuff
 
 - Convert cid: `ipfs cid format -v 0 bafybeigwwctpv37xdcwacqxvekr6e4kaemqsrv34em6glkbiceo3fcy4si`
+
+
+
+
+
+allowed:
+https://ipfs-gamma.chixodo.xyz/ipfs/QmTYKvmQPRtqLjaEYhjfBR8GSqZK6g7SE5ty3FerVGBdx1
+https://bafybeicnjavpgjgqljrrr5kt3ole56ufgqpahzdtkcu5wjp6qmwre7o5iy.ipfs.chixodo.xyz/
+04b3d0eb7e61f5e12d2ed4033544eab48fa608454f41ed75b910f99d37164691
+
+
+blocked:
+https://ipfs-gamma.chixodo.xyz/ipfs/QmcniBv7UQ4gGPQQW2BwbD4ZZHzN3o3tPuNLZCbBchd1zh
+https://bafybeigwwctpv37xdcwacqxvekr6e4kaemqsrv34em6glkbiceo3fcy4si.ipfs.chixodo.xyz/
+520baafdcc3c7e79ac74c9c8e9f820cbb7b35cec61dbf18a21582f1bbc2dcd86

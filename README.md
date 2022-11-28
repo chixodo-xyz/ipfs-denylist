@@ -1,9 +1,9 @@
 # ipfs-denylist
 
->This code is not properly working yet! 
->1. Wrote quite fast and scratch
->2. Performance might be bad
->3. not properly testet
+>This code is still a prototype! 
+>1. Wrote quite fast
+>2. ipns not properly testet
+>3. Update of Denylist must be implemented
 
 ## Implementation
 
@@ -39,7 +39,7 @@ cp /usr/share/ipfs-denylist/lib/*.lua /usr/share/lua/5.1/
 4. Generate denylist by dwebops 
 
 ```bash
-./update.sh
+./update-denylist.sh
 #for Testing: 
 echo "520baafdcc3c7e79ac74c9c8e9f820cbb7b35cec61dbf18a21582f1bbc2dcd86" >> denylist/52/520b
 ```
@@ -69,3 +69,5 @@ service nginx restart
 
 - CID/Multicode/Multihash Implementation: https://github.com/filecoin-project/lua-filecoin
 - SHA2 Implementation: https://github.com/Egor-Skriptunoff/pure_lua_SHA
+
+>Remember to remove SHA256 testing: `./update-denylist.sh`

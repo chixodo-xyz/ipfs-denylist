@@ -7,7 +7,7 @@
 
 ## Implementation
 
->Follow this information to implement ipfs-denylist. #WIP
+>Follow this information to implement ipfs-denylist.
 
 1. Clone Repo to /usr/share/ipfs-denylist
 

@@ -31,11 +31,15 @@ nano /etc/nginx/sites-available/[ipfs-host-config].conf
 apt install libnginx-mod-http-lua jq
 mkdir /usr/share/lua/
 mkdir /usr/share/lua/5.1/
-cd /usr/share/lua/5.1/
-wget https://raw.githubusercontent.com/Egor-Skriptunoff/pure_lua_SHA/master/sha2.lua
+cp /usr/share/ipfs-denylist/lib/*.lua /usr/share/lua/5.1/
 ```
 
-#4. download denylist by dwebops and add required nginx-config, lua-filter
+4. Generate denylist by dwebops 
+
+```bash
+./update.sh
+```
+
 mkdir /etc/ipfs-denylist
 cd /etc/ipfs-denylist
 wget  https://badbits.dwebops.pub/denylist.json
@@ -118,6 +122,9 @@ nano ipfs-denylist-filter.lua
 - Convert cid: `ipfs cid format -v 0 bafybeigwwctpv37xdcwacqxvekr6e4kaemqsrv34em6glkbiceo3fcy4si`
 
 
+
+
+Credits: https://github.com/filecoin-project/lua-filecoin
 
 
 

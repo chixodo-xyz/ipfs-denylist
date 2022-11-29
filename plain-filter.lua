@@ -38,6 +38,11 @@ function getHostname()
     return hostname
 end
 
+-- write pre-debuging header
+if ngx.var.debug == "true" then
+  ngx.header['X-debug-OriginalCID'] = ngx.var.cid
+end
+
 -- preparation
 if string.starts(ngx.var.cid, "Qm") then
   CID = ngx.var.cid
@@ -62,7 +67,6 @@ local duration = (socket.gettime() - starttime) * 1000
 -- write debuging header
 if ngx.var.debug == "true" then
   ngx.header['X-debug-Time'] = duration
-  ngx.header['X-debug-OriginalCID'] = ngx.var.cid
   ngx.header['X-debug-ProcessedCID'] = CID
   ngx.header['X-debug-HashOfCID'] = cidhash
   ngx.header['X-debug-DenyListFile'] = denylistfile

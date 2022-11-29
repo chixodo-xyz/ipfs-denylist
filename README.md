@@ -42,7 +42,10 @@ cp /usr/share/ipfs-denylist/lib/*.lua /usr/share/lua/5.1/
 ./update-denylist.sh
 #for Testing: 
 echo "520baafdcc3c7e79ac74c9c8e9f820cbb7b35cec61dbf18a21582f1bbc2dcd86" >> customdeny.txt
+./update-denylist.sh
 ```
+
+>Remember to remove customdeny after testing: `rm customdeny.txt ; ./update-denylist.sh`
 
 5. Activate change
 
@@ -65,9 +68,10 @@ service nginx restart
   + https://bafybeigwwctpv37xdcwacqxvekr6e4kaemqsrv34em6glkbiceo3fcy4si.ipfs.chixodo.xyz/
   + SHA256: 520baafdcc3c7e79ac74c9c8e9f820cbb7b35cec61dbf18a21582f1bbc2dcd86
 
+- Check blocked accesses: `cat /var/log/nginx/access.log | grep " 403 "`
+
 ## Credits:
 
 - CID/Multicode/Multihash Implementation: https://github.com/filecoin-project/lua-filecoin
 - SHA2 Implementation: https://github.com/Egor-Skriptunoff/pure_lua_SHA
 
->Remember to remove SHA256 testing: `./update-denylist.sh`

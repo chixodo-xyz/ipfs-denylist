@@ -45,14 +45,21 @@ end
 
 -- preparation
 if string.starts(ngx.var.cid, "Qm") then
+  -- CIDv0
   CID = ngx.var.cid
 else
-  local CIDtemp = cidlib.decode(ngx.var.cid)
-  CIDtemp.version = 0
-  CIDtemp.multibase = "base58btc"
-  CIDtemp.multicodec = "dag-pb"
-  CIDtemp.multihash = "sha2-256"
-  CID = cidlib.encode(CIDtemp)
+  if pcall(cidlib.decode(ngx.var.cid)) then
+    -- CIDv1
+    local CIDtemp = cidlib.decode(ngx.var.cid)
+    CIDtemp.version = 0
+    CIDtemp.multibase = "base58btc"
+    CIDtemp.multicodec = "dag-pb"
+    CIDtemp.multihash = "sha2-256"
+    CID = cidlib.encode(CIDtemp)
+  else
+    -- nonCIDv0
+    CID = ngx.var.cid
+  end
 end
 
 local cidhash = sha.sha256(CID)

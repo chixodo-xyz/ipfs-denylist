@@ -2,8 +2,8 @@
 
 >This code is still a prototype! 
 >1. Wrote quite fast
->2. ipns not properly testet
->3. Update of Denylist must be implemented
+>2. not every possible thing is testet nor audited
+>3. Scheduled update of Denylist must be implemented
 
 ## Implementation
 

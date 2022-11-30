@@ -55,6 +55,9 @@ elseif string.starts(ngx.var.cid, "bafy") then
   CIDtemp.multicodec = "dag-pb"
   CIDtemp.multihash = "sha2-256"
   CID = cidlib.encode(CIDtemp)
+elseif string.starts(ngx.var.cid, "k51q") then
+  -- CIDv1 Name
+  CID = ngx.var.cid
 else
   -- non CID
   CID = ngx.var.cid

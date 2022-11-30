@@ -41,7 +41,7 @@ cp /usr/share/ipfs-denylist/lib/*.lua /usr/share/lua/5.1/
 ```bash
 ./update-denylist.sh
 #for Testing: 
-echo "520baafdcc3c7e79ac74c9c8e9f820cbb7b35cec61dbf18a21582f1bbc2dcd86" >> customdeny.txt
+./deny-cidv0.sh QmcniBv7UQ4gGPQQW2BwbD4ZZHzN3o3tPuNLZCbBchd1zh
 ./update-denylist.sh
 ```
 

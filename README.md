@@ -58,7 +58,7 @@ service nginx restart
 ```bash
 crontab -e
 ADD:>
-*/10 * * * * cd /usr/share/ipfs-denylist && ./update-denylist.sh
+*/20 * * * * cd /usr/share/ipfs-denylist && ./update-denylist.sh
 ```
 
 ## Testing

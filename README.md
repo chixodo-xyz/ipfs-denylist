@@ -54,6 +54,13 @@ nginx -t
 service nginx restart
 ```
 
+6. Setup Cron to Update denylist
+```bash
+crontab -e
+ADD:>
+*/10 * * * * cd /usr/share/ipfs-denylist && ./update-denylist.sh
+```
+
 ## Testing
 
 - allowed:
